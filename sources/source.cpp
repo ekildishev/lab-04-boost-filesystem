@@ -1,36 +1,22 @@
 // Copyright 2018 Your Name <your_email>
 
 #include <header.hpp>
-#include <boost/filesystem.hpp>
-#include <string>
-#include <algorithm>
 #include <iostream>
+#include <string>
 
-Broker findFile(std::string path, size_t fileNameLenght)
-{
-    Broker broker;
-    for(const boost::filesystem::directory_entry &x : boost::filesystem::directory_iterator(path))
-    {
-        if(boost::filesystem::is_directory(x.path()))
-        {
-            findFile(x.path().string(), fileNameLenght);
-        }
-        else {
-          std::string file = x.path().filename().string();
-          unsigned int bill, date;
-          if (file.find("balance_")) {
-            continue;
-          }
-          if (file[16] != '_') {
-            continue;
-          }
-          bill = std::stoi(file.substr(8, 8));
-          date = std::stoi(file.substr(17, 8));
-          if (file.substr(25, 4) != ".txt")
-          {
-            continue;
-          }
-          broker.account.first++;
-        }
+int main(int argc, char **argv) {
+  std::string path_to_ftp;
+  if (argc == 2) {
+    path_to_ftp = std::string(argv[1]);
+  } else {
+    path_to_ftp = "../";
+  }
+  findFile(path_to_ftp, path_to_ftp.length() + 1);
+  for (const auto &x : brokerVector) {
+    for (const auto &y : x.account) {
+      std::cout << "broker:" << x.name << " account:" << y.first
+                << " files:" << y.second.first
+                << " lastdate:" << y.second.second << std::endl;
     }
+  }
 }

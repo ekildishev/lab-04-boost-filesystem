@@ -27,8 +27,12 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
-hunter_add_package(Boost COMPONENTS system regex filesystem)
-find_package(Boost CONFIG REQUIRED system regex filesystem)
+#target_include_directories(template
+        #PUBLIC C:/.hunter/_Base/9a3594a/8fd1943/2c875e7/Install/include/boost/filesystem)
+#target_link_directories(template
+        #PUBLIC C:/.hunter/_Base/9a3594a/8fd1943/2c875e7/Install/include/boost/filesystem)
+hunter_add_package(Boost COMPONENTS system filesystem)
+find_package(Boost CONFIG REQUIRED system filesystem)
 
 # TODO: change template word to project name and delete this comment
 add_library(template STATIC
@@ -36,10 +40,10 @@ add_library(template STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
 )
 
-add_executable(skeak
+#add_executable(template
   # enum your files and delete this comment
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-)
+  #${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
+#)
 add_executable(tests
   # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
@@ -51,7 +55,7 @@ target_include_directories(template
         PUBLIC ${Boost_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-target_include_directories(skeak
+target_include_directories(template
   PUBLIC ${Boost_ROOT}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -62,9 +66,8 @@ target_include_directories(tests
 )
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests GTest::main template)
-target_link_libraries(skeak
+target_link_libraries(template
         Boost::system
-        Boost::regex
         Boost::filesystem
         )
 
