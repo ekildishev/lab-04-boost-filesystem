@@ -26,7 +26,8 @@ Broker findFile(std::string path, size_t fileNameLenght)
           }
           bill = std::stoi(file.substr(8, 8));
           date = std::stoi(file.substr(17, 8));
-          if (file.substr(25, 4) != ".txt") {
+          if (file.substr(25, 4) != ".txt")
+          {
             continue;
           }
           broker.account.first++;
