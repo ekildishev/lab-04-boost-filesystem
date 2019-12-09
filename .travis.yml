@@ -4,11 +4,17 @@ language:
 - minimal
 services:
 - docker
+env:
+  - DOCKER_IMAGE="toliak/bootstrap-cpp"
+
+before_script:
+  - docker pull $DOCKER_IMAGE
 
 jobs:
   include:
   - name: "checks"
     script:
+    - chmod 755 scripts/*.sh
     - docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t rusdevops/bootstrap-cpp scripts/checks.sh
   - name: "tests"
     script:
