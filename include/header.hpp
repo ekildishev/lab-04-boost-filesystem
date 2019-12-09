@@ -1,6 +1,10 @@
 // Copyright 2018 Your Name <your_email>
+#pragma once
+#include <boost/filesystem.hpp>
+#include <string>
 
-#ifndef INCLUDE_HEADER_HPP_
-#define INCLUDE_HEADER_HPP_
-
-#endif // INCLUDE_HEADER_HPP_
+struct Broker
+{
+    std::string name;
+    std::pair<unsigned int, std::pair<unsigned int, unsigned int>> account;
+};
