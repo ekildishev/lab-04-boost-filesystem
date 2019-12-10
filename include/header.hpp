@@ -43,7 +43,7 @@ void findFile(std::string path, size_t fileLenght) {
         if (broker.name == a.name) {
           existAccount = false;
           existBroker = true;
-          for (auto acc : a.account) {
+          for (auto &acc : a.account) {
             if (bill == acc.first) {
               existAccount = true;
               acc.second.first++;
