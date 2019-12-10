@@ -20,9 +20,9 @@ jobs:
     script:
     - docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/tests.sh
   - name: "compile"
-      script:
-        - chmod 755 scripts/*.sh
-        - docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/compile.sh
+    script:
+      - chmod 755 scripts/*.sh
+      - docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/compile.sh
 
 notifications:
     email: false
