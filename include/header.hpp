@@ -1,12 +1,12 @@
 // Copyright 2018 Your Name <your_email>
 
 #pragma once
+#include <algorithm>
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <string>
-#include <vector>
 #include <utility>
-#include <algorithm>
+#include <vector>
 
 struct Broker {
   std::string name;
@@ -32,6 +32,9 @@ void findFile(std::string path, size_t fileLenght) {
       }
       bill = std::stoi(file.substr(8, 8));
       date = std::stoi(file.substr(17, 8));
+      if (!file.find(".old.txt")) {
+        continue;
+      }
       if (file.substr(25, 4) != ".txt") {
         continue;
       }
